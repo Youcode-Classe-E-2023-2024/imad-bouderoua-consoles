@@ -32,7 +32,6 @@ hideall(slides,i);
 
 
 function myFunction() {
-  console.log(i);
   i++;
   if(i === slides.length){
     i = 0;}
@@ -43,62 +42,56 @@ function myFunction() {
 myFunction();
 
 
-const interval = 4000;
+const interval = 5000;
 setInterval(myFunction, interval);
 // pagination
-var xmlns = "http://www.w3.org/2000/svg",
-  xlinkns = "http://www.w3.org/1999/xlink",
-  select = function(s) {
-    return document.querySelector(s);
-  },
-  selectAll = function(s) {
-    return document.querySelectorAll(s);
-  },
-    size = 20
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.querySelectorAll('.pagination__link');
 
-TweenMax.set('svg', {
-  visibility: 'visible'
-})
+  links.forEach(function(link) {
+      link.addEventListener('click', function(event) {
+          event.preventDefault();
 
-select('#joinLine').setAttribute('stroke-width', size);
-var maskSource = select('#circleGroup').cloneNode(true);
-maskSource.id = '';
-maskSource.setAttribute('fill', '#FFF');
-maskSource.setAttribute('stroke', '#777777');
-maskSource.setAttribute('stroke-width', 5);
-select('#radioMask').appendChild(maskSource);
-select('#mainGroup').setAttribute('mask', 'url(#radioMask)')
-document.body.onclick = function(e){
-  
-  var target = e.target;
-  if(target.tagName == 'circle'){
-    
-    var id = target.id;
-    
-    
-    var tl = new TimelineMax();
-    tl.to('#joinLine', 0.3, {
-      attr:{
-        x2:target.getAttribute('cx')
-      },
-      strokeWidth:0,
-      ease:Power2.easeIn
-    }).to('#joinLine', 1, {
-      attr:{
-        x1:target.getAttribute('cx')
-      },
-      ease:Elastic.easeOut.config(1, 0.76)
-    }, '+=0')
-      .to('#joinLine', 2, {
-      strokeWidth:size,
-      ease:Elastic.easeOut.config(1, 0.8)
-    }, '-=1')   
-    
-    tl.timeScale(2)
-  }
+          links.forEach(function(link) {
+              link.classList.remove('is_active');
+          });
+
+          this.classList.add('is_active');
+      });
+  });
+});
+// handling cartes
+var size = 0;
+
+var s = 0;
+let t = 5;
+
+const cartes = document.querySelectorAll('.cartes');
+console.log(cartes.length)
+function hidecartes(start,stop){
+
+  s = start;
+  t = stop;
+  let c = 0;
+  cartes.forEach(element => {
+      if( c>= start && c < stop + size){
+        element.style.display = "block";
+      }else{
+        element.style.display = "none";
+      }
+      c++;
+    });
 }
+hidecartes(s,t);
 
-//automate the first one
-document.body.onclick({target:selectAll('circle')[2]});
-//document.body.ontouchstart = document.body.onclick
-// end pagination
+const buttonsize = document.querySelector(".changesize");
+
+buttonsize.addEventListener("click", function () {
+  if (size === 0) {
+      size = 5;
+      hidecartes(s,t);
+  } else {
+      size = 0;
+      hidecartes(s,t);
+  }
+});

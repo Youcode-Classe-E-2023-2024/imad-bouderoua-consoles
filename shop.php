@@ -12,7 +12,7 @@ $stmt->execute();
 
 $images = $stmt->fetchAll();
 
-$sql2 ="SELECT * FROM cartes ORDER BY id DESC";
+$sql2 ="SELECT * FROM cartes WHERE platform = 'playstation' ORDER BY id DESC;";
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
 
@@ -133,26 +133,21 @@ $cartes = $stmt2->fetchAll();
                             
 
   
-  
+            <div class="changesize">
+            <svg class="iconsize" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M544 416L32 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l512 0c17.7 0 32-14.3 32-32s-14.3-32-32-32zm22.6-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L480 274.7 480 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 210.7-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96zm-320-45.3c-12.5-12.5-32.8-12.5-45.3 0L160 274.7 160 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 210.7L54.6 233.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+            </div>
 
         
     </div>
-    <div>
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 600">
-            <defs>
-            <mask id="radioMask"></mask>
-            </defs>
-            <g id="mainGroup">
-                <g id="circleGroup" fill="transparent" stroke-width="4" stroke-miterlimit="10" >
-                <circle  cx="260" cy="300" r="23"/>    
-                <circle  cx="330" cy="300" r="23"/>
-                <circle  cx="400" cy="300" r="23"/>
-                <circle  cx="470" cy="300" r="23"/>  
-                <circle  cx="540" cy="300" r="23"/>    
-            </g>  
-                <line id="joinLine" fill="none" stroke-width="20" stroke-linecap="round" stroke-miterlimit="10" x1="260" y1="300" x2="260" y2="300"/>
-            </g>
-            </svg>
+    <div class="wrapper">
+        <ul class="pagination">
+        <li class="pagination__item"><a href="#" onclick="hidecartes(0,5);" class="pagination__link is_active">1</a></li>
+        <li class="pagination__item"><a href="#" onclick="hidecartes(5,10);" class="pagination__link ">2</a></li>
+        <li class="pagination__item"><a href="#" onclick="hidecartes(10,15);" class="pagination__link">3</a></li>
+            <li class="pagination__item"><a href="#" class="pagination__link">4</a></li>
+            <li class="pagination__item"><a href="#" class="pagination__link">5</a></li>
+            <li class="pagination__item"><a href="#" class="pagination__link">6</a></li>
+        </ul>
     </div>
     <footer>
         <div class="footer">
@@ -165,6 +160,27 @@ $cartes = $stmt2->fetchAll();
             </div>
         </div>
     </footer>
+    <!-- account -->
+    <div class="account">
+        <h2>Welcome!</h2>
+        <p>Please enter your email and password to log in:</p>
+        <form>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required><br>
+      
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required><br>
+      
+          <label for="avatar">Choose an avatar:</label>
+          <div class="avatars">
+            <img src="avatars/download.jpg" alt="">
+            <img src="avatars/images.jpg" alt="">
+            <img src="avatars/images.png" alt="">
+          </div>
+      
+          <button type="submit">Log In</button>
+        </form>
+      </div>
 </body>
 </html>
 <script src="index.js"></script>
