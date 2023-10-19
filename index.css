@@ -1,5 +1,5 @@
 
-   body,html{margin:0;padding:0;height:100%;}
+body,html{margin:0;padding:0;height:100%;}
 body{
 
     background-image: url(backimages/ghost-call-of-duty-modern-warfare-ii-thumb.jpg);
@@ -109,6 +109,7 @@ a:hover div{
 .shortnews{
     position: absolute;
     right: 6%;
+    background-color: #E3DFD2;
     border: solid 2px black;
     border-radius: 5%;
     height: 35%;

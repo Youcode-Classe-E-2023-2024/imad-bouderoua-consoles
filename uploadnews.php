@@ -3,7 +3,7 @@ if (isset($_POST['upload'])) {
 
 
     # Database connection file
-    // include 'db.conn.php';
+    include 'connection.php';
 
     # Number of images
     $num_of_imgs = count($_FILES['images']['name']);
@@ -20,21 +20,21 @@ if (isset($_POST['upload'])) {
 
             if (in_array($img_ex_lc, $allowed_exs)) {
                 $new_img_name = uniqid('IMG-', true) . '.' . $img_ex_lc;
-                $img_upload_path = 'uploads/' . $new_img_name;
+                $img_upload_path = 'newsfolder/' . $new_img_name;
                 move_uploaded_file($tmp_name, $img_upload_path);
 
-                // $sql = "INSERT INTO images (img_name, description) VALUES (?, ?)";
-                // $stmt = $conn->prepare($sql);
-                // $stmt->execute([$new_img_name, $description]);
+                 $sql = "INSERT INTO newsimages (imgnewsname) VALUES (?)";
+                 $stmt = $conn->prepare($sql);
+                 $stmt->execute([$new_img_name ]);
                 echo "added sucssecfully";
                 
             } else {
                 $em = "You can't upload files of this type";
-                header("Location: index.php?error=$em");
+                header("Location: uploadnews.php?error=$em");
             }
         } else {
             $em = "Unknown Error Occurred while uploading";
-            header("Location: index.php?error=$em");
+            header("Location: uploadnews.php?error=$em");
         }
     }
 }
