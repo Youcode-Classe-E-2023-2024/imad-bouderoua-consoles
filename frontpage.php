@@ -20,9 +20,10 @@ $images = $stmt->fetchAll();
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="quote">Discover the game</div>
     <div class="logo"> <img class="logoimag" src="backimages/logo2.png" alt=""></div>
     <div class="profil">
-        <i class="fa-solid fa-user" style="color: white;"></i>
+        <i  class="fa-solid fa-user" style="color: white;"></i>
     </div>
     <span><span></span></span>
     <div class="wrap">
@@ -34,13 +35,16 @@ $images = $stmt->fetchAll();
     </div>
     
     <div class="account">
+    <svg class="exitbutton" style="position: relative; font-size:larger; margin-top:2%; right: -42%; width: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
         <?php if (isset($_SESSION['name']) && isset($_SESSION['chosenAvatar'])): ?>
-            <img style="margin-top: 10%;" src="avatars/<?php echo $_SESSION['chosenAvatar']; ?>" alt="Selected Avatar">
+            <img src="avatars/<?php echo $_SESSION['chosenAvatar']; ?>" alt="Selected Avatar">
             <h2>Welcome, <?php echo $_SESSION['name']; ?>!</h2>
+            <form method="POST" action="disconnect.php">
+                <button type="submit" name="disconnect">Disconnect</button>
+            </form>
         <?php else: ?>
         <h2>Welcome!</h2>
         <p>Please enter your email and password to log in:</p>
-        <?php echo "logi" ?>
         <form method="POST" action="login.php">
     <label for="email">Email:</label>
     <input type="email" id="email" require name="email" required><br>
@@ -56,7 +60,7 @@ $images = $stmt->fetchAll();
     </div>
 
     
-    <input type="hidden" id="chosenAvatar" name="chosenAvatar" value="">
+    <input type="hidden" id="chosenAvatar" require name="chosenAvatar" value="">
     
     <button type="submit" name="log">Log In</button>
     </form>
@@ -71,12 +75,16 @@ $images = $stmt->fetchAll();
     
     <?php endforeach;} ?>
     </div>
+    <div class="shortnews" style="background-color:red; top:18%;">
+        
+    </div>
+    
 </body>
 </html>
 <script>
     function playstationin() {
         document.querySelector('body').style.backgroundImage = 'none';
-        document.querySelector('body').style.backgroundImage = "url('backimages/federico-vitale-7QvJbALhefo-unsplash.jpg')";
+        document.querySelector('body').style.backgroundImage = "url('backimages/pexels-borja-lopez-1346154 (1).jpg')";
         document.querySelector('body').style.backgroundSize = 'contain';
         document.querySelector('body').style.backgroundPosition = "center center";
     }
@@ -87,7 +95,7 @@ $images = $stmt->fetchAll();
 
     function pcin() {
         document.querySelector('body').style.backgroundImage = 'none';
-        document.querySelector('body').style.backgroundImage = "url('backimages/omar-prestwich-0HAPFlyy9o4-unsplash.jpg')";
+        document.querySelector('body').style.backgroundImage = "url('backimages/The-Beginners-Guide-to-Creating-your-Dream-Gaming-Setupf.png')";
         document.querySelector('body').style.backgroundSize = 'contain';
     }
 
@@ -137,6 +145,26 @@ setInterval(myFunction, interval);
         
         document.getElementById('chosenAvatar').value = avatarName;
     }
+
+    var accountElement = document.querySelector('.account');
+    document.querySelector('.exitbutton').addEventListener("click", function () {
+  console.log("dkhelt");
+  
+  if (accountElement.style.display === "block" || accountElement.style.display === "") {
+      accountElement.style.display = "none";
+  } else {
+      accountElement.style.display = "block";
+  }
+});
+
+document.querySelector('.fa-solid').addEventListener("click", function () {
+    console.log("dkhelt2")
+    if (accountElement.style.display === "block" || accountElement.style.display === "") {
+      accountElement.style.display = "none";
+  } else {
+      accountElement.style.display = "block";
+  }
+})
 </script>
 
 

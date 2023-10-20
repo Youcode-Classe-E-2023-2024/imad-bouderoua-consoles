@@ -95,3 +95,97 @@ buttonsize.addEventListener("click", function () {
       hidecartes(s,t);
   }
 });
+
+// from the front page
+function selectAvatar(avatarName) {
+        
+  document.getElementById('chosenAvatar').value = avatarName;
+}
+
+var accountElement = document.querySelector('.account');
+document.querySelector('.exitbutton').addEventListener("click", function () {
+console.log("dkhelt");
+
+if (accountElement.style.display === "block" || accountElement.style.display === "") {
+accountElement.style.display = "none";
+return;
+} else {
+accountElement.style.display = "block";
+return;
+}
+});
+
+document.querySelector('.logininfo').addEventListener("click", function () {
+if (accountElement.style.display === "none" || accountElement.style.display === "") {
+accountElement.style.display = "block";
+} else {
+accountElement.style.display = "none";
+}
+})
+// download and login
+function handleCarteClick(carte) {
+  var username = carte.getAttribute('data-username');
+  
+  if (username) {
+      showDownloadDiv();
+  } else {
+      showAccountDiv();
+  }
+}
+
+function showDownloadDiv() {
+  var downloadDiv = document.querySelector('.download');
+  if (downloadDiv) {
+      downloadDiv.style.display = 'block';
+  }
+}
+
+function showAccountDiv() {
+  var accountDiv = document.querySelector('.account');
+  if (accountDiv) {
+      accountDiv.style.display = 'block';
+  }
+}
+document.querySelector('.exitdownload').addEventListener("click", function () {
+  console.log("dkhelt");
+  
+  if (document.querySelector('.download').style.display === "block" || document.querySelector('.download').style.display === "") {
+  document.querySelector('.download').style.display = "none";
+  return;
+  } else {
+  document.querySelector('.download').style.display = "block";
+  return;
+  }
+  });
+  // subscribe
+  var premium = false;
+  document.querySelector('.Btn').addEventListener("click", function () {
+    if (document.querySelector('.premium').style.display === "none" || document.querySelector('.premium').style.display === "") {
+        document.querySelector('.premium').style.display = "block";
+    } else {
+        document.querySelector('.premium').style.display = "none";
+    }
+});
+
+
+
+document.querySelector('#premiumButton').addEventListener("click", function () {
+console.log("dkhelt");
+if (premium === false) {
+    premium = true;
+    document.querySelector('#premiumButton').textContent = "You are premium";
+    document.querySelector('.redline').style.display = "none";
+} else {
+    premium = false;
+    document.querySelector('#premiumButton').textContent = "Go Premium";console.log("fabor")
+    document.querySelector('.redline').style.display = "block";
+}
+});
+document.querySelector('.cssbuttons-io-button').addEventListener("click", function () {
+  console.log("dkhelt");
+  if (document.querySelector('.premium').style.display === "none" || document.querySelector('.premium').style.display === "") {
+      document.querySelector('.premium').style.display = "block";
+  } else {
+      document.querySelector('.premium').style.display = "none";
+  }
+});

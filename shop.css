@@ -236,7 +236,7 @@ body {
 /* Rating animation */
 .rating {
     position: relative;
-    left: 182%;
+    left: 160%;
     display: flex;
     flex-direction: row-reverse;
     
@@ -246,7 +246,7 @@ body {
 
 .rating input {
     appearance: unset;
-    margin: 0px 0.8px;
+    margin: 0px -11px;
 }
 
 .rating label {
@@ -413,6 +413,7 @@ footer {
     width: 100%;
     border: 0;
     padding: 0.5em 1.5em 0.5em 0;
+    margin-top: 6%;
     font-size: 1em;
   }
   
@@ -486,8 +487,8 @@ a {
     margin: 12px 0 ;
     left: 30%;
     background-color: rgb(71, 36, 244);
-    height: 50px;
-    width: 70px;
+    height: 30px;
+    width: 60px;
     border-radius: 15%;
     display: flex;
     justify-content: center;
@@ -503,16 +504,16 @@ a {
 /* login account */
 .account {
     width: 33%;
-    display: none;
     z-index: 5;
+    display: none;
     position: fixed;
     left: 35%;
-    top: 25%;
-    height: 400px;
+    top: 18%;
+    
     background-color: rgba(247, 247, 247, 0.966);
     border-radius: 15%;
-    padding: 20px; /* Add some padding for content */
-    text-align: center; /* Center-align text and form elements */
+    padding: 20px; 
+    text-align: center; 
   }
   
   .account h2 {
@@ -539,7 +540,6 @@ a {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
     border-radius: 5px;
   }
   
@@ -576,3 +576,184 @@ a {
     border-color: #3498db; 
     transform: scale(1.1); 
   }
+  .exitbutton:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+ 
+  .download{
+    width: 20%;
+    z-index: 5;
+    display: none;
+    position: fixed;
+    left: 60%;
+    top: 60%;
+    height: 150px;
+    background-color: rgb(221 207 207 / 97%);
+    border-radius: 15%;
+    padding: 20px;
+    border:1px solid white;
+    box-shadow:1px 1px 10px;
+    text-align: center;
+  }
+  
+ /* download */
+ .button {
+    --main-focus: #2d8cf0;
+    --font-color: #dedede;
+    --bg-color-sub: #222;
+    --bg-color: #323232;
+    --main-color: #dedede;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    margin:0px 30px 25px 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .button, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  
+  .button .button__text {
+    transform: translateX(0px);
+    color: var(--font-color);
+    font-weight: 600;
+  }
+  
+  .button .button__icon {
+    position: absolute;
+    transform: translateX(130px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button .svg {
+    width: 20px;
+    fill: var(--main-color);
+  }
+  
+  .button:hover {
+    background: var(--bg-color);
+  }
+  
+  .button:hover .button__text {
+    color: transparent;
+  }
+  
+  .button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  
+  .button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+  }
+  /* b2 */
+  .cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 17px;
+    margin-left:19%;
+    padding: 0.8em 1.5em 0.8em 1.2em;
+    color: white;
+    background: #ff7d00;
+    background: linear-gradient(0deg, rgba(255, 125, 0, 1) 0%, rgba(255, 95, 109, 1) 100%);
+    border: 2px solid #ff7d00;
+    border-radius: 20em;
+  }
+  
+  .cssbuttons-io-button svg {
+    margin-right: 8px;
+  }
+  
+  .cssbuttons-io-button:hover {
+    border-color: white;
+    box-shadow: 0 0.5em 1.5em -0.5em #bf5800;
+  }
+  
+  .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #bf5800;
+  }
+
+  .exitdownload{
+    position: relative; 
+    font-size:larger; 
+    margin-top:-1%;
+     right: -48%;
+     width: 1em;
+  }
+  .exitdownload:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+  /* premium */
+  .premium {
+    position: absolute;
+    top: 30%;
+    z-index:6;
+    right: 20px;
+    background-color: #9eb9cb;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    text-align: center;
+    display: none;
+}
+
+.premium h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.premium p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.premium button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.premium button:hover {
+    background-color: #c0392b;
+}
+.cssbuttons-io-button {
+    position: relative;
+}
+
+.redline {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: red;
+    z-index: 10;
+  left:0;
+    top: 50%; 
+
+    transform: translateY(-50%); 
+}
+
