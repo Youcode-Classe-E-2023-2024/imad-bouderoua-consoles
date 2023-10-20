@@ -8,6 +8,13 @@ $sql  = "SELECT imgnewsname  FROM newsimages ORDER BY id DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $images = $stmt->fetchAll();
+
+$sql3  = "SELECT ad  FROM ads ORDER BY id DESC";
+
+$stmt3 = $conn->prepare($sql3);
+$stmt3->execute();
+
+$imagesads = $stmt3->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -20,16 +27,22 @@ $images = $stmt->fetchAll();
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="quote">Discover the game</div>
+    <div class="quote">Unlock the Adventure</div><div class="quote2">All copyrights are reserved 2023</div>
     <div class="logo"> <img class="logoimag" src="backimages/logo2.png" alt=""></div>
     <div class="profil">
         <i  class="fa-solid fa-user" style="color: white;"></i>
     </div>
     <span><span></span></span>
     <div class="wrap">
-        <a onmouseover="playstationin()" onmouseout="playstationout()" href="#"><div></div></a>
-        <a onmouseover="pcin()" onmouseout="pcout()" href="#"><div></div></a>
-        <a onmouseover="xbowin()" onmouseout="xboxout()" href="#"><div></div></a>
+    <a href="shop.php?platform=playstation" onmouseover="playstationin()" onmouseout="playstationout()">
+    <div>Playstation</div>
+</a>
+<a href="shop.php?platform=pc" onmouseover="pcin()" onmouseout="pcout()">
+    <div>PC</div>
+</a>
+<a href="shop.php?platform=xbox" onmouseover="xbowin()" onmouseout="xboxout()">
+    <div>Xbox</div>
+</a>
         <a href="#"><div></div></a>
             
     </div>
@@ -75,8 +88,13 @@ $images = $stmt->fetchAll();
     
     <?php endforeach;} ?>
     </div>
-    <div class="shortnews" style="background-color:red; top:18%;">
-        
+    <div class="ads" style="  top:18%;">
+    <?php if ($stmt3->rowCount() > 0) { ?>
+	
+    <?php foreach ($imagesads as $imageads): ?>
+    <img class="adn imgnewsmini newsfront" src="adsfolder/<?=$imageads['ad']?> " alt="">        
+    
+    <?php endforeach;} ?>
     </div>
     
 </body>
@@ -117,28 +135,39 @@ $images = $stmt->fetchAll();
 
 
     const miniimgs = document.querySelectorAll(".imgnewsmini");
+    console.log("mini" + miniimgs.length)
+const ads = document.querySelectorAll(".adn");
+var i = 0;
+var a = 0;
 
-    var i =0;
-    function hideall(array,i){
-    array.forEach(element => {
-      if(element !== array[i] ){
-        element.style.display = "none";}
-    });
-  }
-  hideall(miniimgs,i);
-function myFunction() {
-  i++;
-  if(i === miniimgs.length){
-    i = 0;}
-    miniimgs[i].style.display = "block";
-  hideall(miniimgs,i);
+function hideall(array, index) {
+  array.forEach((element, idx) => {
+    element.style.display = idx === index ? "block" : "none";
+  });
 }
 
-myFunction();
+hideall(miniimgs, i);
+hideall(ads, a);
 
+function cycleImagesAndAds() {
+    
+  i++;
+  if (i === miniimgs.length - ads.length) {
+    i = 0;
+  }
+  a++;
+  if (a === ads.length) {
+    a = 0;
+  }
+
+  hideall(miniimgs, i);
+  hideall(ads, a);
+}
+
+cycleImagesAndAds();
 
 const interval = 4000;
-setInterval(myFunction, interval);
+setInterval(cycleImagesAndAds, interval);
 
 
     function selectAvatar(avatarName) {

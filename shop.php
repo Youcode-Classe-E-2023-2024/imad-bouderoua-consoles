@@ -1,5 +1,5 @@
 <?php 
- session_start();
+session_start();
 
 # database connection file
 include 'connection.php';
@@ -12,12 +12,25 @@ $stmt->execute();
 
 $images = $stmt->fetchAll();
 
-$sql2 ="SELECT * FROM cartes WHERE platform = 'xbox' ORDER BY id DESC;";
+if (isset($_GET['platform'])) {
+    $_SESSION['selected_platform'] = $_GET['platform'];
+}
+
+$selectedPlatform = $_SESSION['selected_platform'];
+if ($selectedPlatform === 'playstation') {
+    $sql2 = "SELECT * FROM cartes WHERE platform = 'playstation' ORDER BY id DESC;";
+} elseif ($selectedPlatform === 'pc') {
+    $sql2 = "SELECT * FROM cartes WHERE platform = 'pc' ORDER BY id DESC;";
+} elseif ($selectedPlatform === 'xbox') {
+    $sql2 = "SELECT * FROM cartes WHERE platform = 'xbox' ORDER BY id DESC;";
+}
+
 $stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
 
 $cartes = $stmt2->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,14 +53,42 @@ $cartes = $stmt2->fetchAll();
             </div>
         </div>
         <div class="headerdown">
-            <div class="navbar">
-                <span>menu 1</span>
-                <span>menu 1</span>
-                <span>menu 1</span>
-                <span>menu 1</span>
-                <span>menu 1</span>
-                <span>menu 1</span>
-            </div>
+        <div class="navbar">
+    <span>
+        <div class="namespan">Categories <i class="navsvg fa-solid fa-arrow-down-wide-short"></i></div>
+        <div class="spanchoices">
+            <ul>
+                <li>Funny</li>
+                <li>Action</li>
+                <li>Fight</li>
+                <li>Romance</li>
+                <li>Psycho</li>
+                <li>Brain</li>
+                
+            </ul>
+        </div>
+    </span>
+    <span>
+        <div class="namespan">Dates <i class="navsvg fa-solid fa-arrow-down-wide-short"></i></div>
+        <div class="spanchoicesd">
+            <ul>
+                <li>1980-1990</li>
+                <li>1990-2000</li>
+                <li>2000-2010</li>
+            </ul>
+        </div>
+    </span>
+    <span>
+        <div class="namespan">Languages <i class="navsvg fa-solid fa-arrow-down-wide-short"></i></div>
+        <div class="spanchoicesl">
+            <ul>
+                <li>English</li>
+                <li>Japanese</li>
+                <li>French</li>
+            </ul>
+        </div>
+    </span>
+</div>
             <div class="inputBox_container">
   <svg class="search_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" alt="search icon">
     <path d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z">
@@ -152,11 +193,11 @@ $cartes = $stmt2->fetchAll();
     <footer>
         <div class="footer">
             
-            <img src="backimages/logo2.png" style=" height:80px;  margin-left:30%;" alt="">
-            <div style=" width:50%;margin:auto; display: flex;">
-                <i style="font-size: 50px; color:green;" class="fa-brands fa-facebook"></i>
-                <i style="font-size: 50px; color:green;" class="fa-brands fa-discord"></i>
-                <i style="font-size: 50px; color:green;" class="fa-brands fa-twitter"></i> 
+            <img  src="backimages/logo2.png" style=" height:80px;  margin:10% 0; margin-left:30.5%;" alt="">
+            <div style=" width:80%;margin:auto; display: flex;">
+                <i style="font-size: 50px; color:red;" class="fa-brands fa-facebook"></i>
+                <i style="font-size: 50px; color:red;" class="fa-brands fa-discord"></i>
+                <i style="font-size: 50px; color:red;" class="fa-brands fa-twitter"></i> 
             </div>
         </div>
     </footer>
