@@ -189,3 +189,34 @@ document.querySelector('.cssbuttons-io-button').addEventListener("click", functi
       document.querySelector('.premium').style.display = "none";
   }
 });
+// user rating
+function handleRatingSelection(selectedValue ,carterateid) {
+
+  
+  console.log('Selected rating:', selectedValue,"id",carterateid);
+      // test ajax 
+    console.log("wssssalajax");
+
+    const productId = carterateid;
+    const rating = selectedValue; 
+
+    fetch('/brief3/rate_handler.php', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId, rating }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("ok");
+        } else {
+          console.log("no");
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+}
+// test styling star

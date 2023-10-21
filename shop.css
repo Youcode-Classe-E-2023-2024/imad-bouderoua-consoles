@@ -295,7 +295,7 @@ body {
 }
 
 .rating input {
-    appearance: unset;
+    appearance:unset;
     margin: 0px -11px;
 }
 
@@ -327,6 +327,16 @@ body {
 
 .rating input:checked ~ label svg {
     transition: 0s;
+    animation: idle 4s linear infinite, yippee 0.75s backwards;
+    fill: var(--fill);
+    stroke: var(--fill);
+    stroke-opacity: 0;
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+}
+.checked{
+  transition: 0s;
     animation: idle 4s linear infinite, yippee 0.75s backwards;
     fill: var(--fill);
     stroke: var(--fill);

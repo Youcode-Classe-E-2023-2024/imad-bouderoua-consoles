@@ -121,8 +121,7 @@ $cartes = $stmt2->fetchAll();
 
 
                 
-    <?php foreach ($cartes as $carte): $uniqueName = 'star-' . $carte['id'];?>
-                                
+    <?php foreach ($cartes as $carte): $uniqueName = 'star-' . $carte['id'];?>        
                 <div class="cartes" data-username="<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>" onclick="handleCarteClick(this)">
                                     <div style="margin: 1% 1%; font-size: 20px; display: flex;">
                                         <img class="imgcarte" src="gamesimages/<?=$carte['gameimg']?>" alt="">
@@ -135,31 +134,32 @@ $cartes = $stmt2->fetchAll();
                                             </div>
                                             <div class="Rate " style="color:#000;">Rate</div>
                                             <div style="margin-top: 1%;" class="rating">
-                                                <input type="radio" id="<?= $uniqueName ?>-1" name="<?= $uniqueName ?>" value="star-1">
+                                            <input type="radio" id="<?= $uniqueName ?>-5" name="<?= $uniqueName ?>" value="star-5" onclick="handleRatingSelection('<?= $uniqueName ?>-5', <?= $carte['id']; ?>)">
+
                                                 <label for="<?= $uniqueName ?>-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                         <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
                                                     </svg>
                                                 </label>
-                                                <input type="radio" id="<?= $uniqueName ?>-2" name="<?= $uniqueName ?>" value="star-2">
+                                                <input type="radio" id="<?= $uniqueName ?>-2" name="<?= $uniqueName ?>" value="star-4" onclick="handleRatingSelection('<?= $uniqueName ?>-2', <?= $carte['id']; ?>)">
                                                 <label for="<?= $uniqueName ?>-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                         <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
                                                     </svg>
                                                 </label>
-                                                <input type="radio" id="<?= $uniqueName ?>-3" name="<?= $uniqueName ?>" value="star-3">
+                                                <input type="radio" id="<?= $uniqueName ?>-3" name="<?= $uniqueName ?>" value="star-3" onclick="handleRatingSelection('<?= $uniqueName ?>-3', <?= $carte['id']; ?>)">
                                                 <label for="<?= $uniqueName ?>-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                         <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
                                                     </svg>
                                                 </label>
-                                                <input type="radio" id="<?= $uniqueName ?>-4" name="<?= $uniqueName ?>" value="star-4">
+                                                <input type="radio" id="<?= $uniqueName ?>-4" name="<?= $uniqueName ?>" value="star-2"onclick="handleRatingSelection('<?= $uniqueName ?>-4', <?= $carte['id']; ?>)">
                                                 <label for="<?= $uniqueName ?>-4">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                         <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
                                                     </svg>
                                                 </label>
-                                                <input type="radio" id="<?= $uniqueName ?>-5" name="<?= $uniqueName ?>" value="star-5">
+                                                <input type="radio" id="<?= $uniqueName ?>-1" name="<?= $uniqueName ?>" value="star-1"onclick="handleRatingSelection('<?= $uniqueName ?>-1', <?= $carte['id']; ?>)">
                                                 <label for="<?= $uniqueName ?>-5">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                         <path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
@@ -170,6 +170,13 @@ $cartes = $stmt2->fetchAll();
                                     </div>
                                     <div style="color:#00000; font-size:larger; width: 95%; padding:2% 2%; margin: 4% auto;"><?php echo $carte['description']; ?></div>
                                 </div>
+                                <script>
+    console.log("Rating value:", '<?= $carte['rate'] ?>');
+    // Set a specific CSS property here, for example, background-color:
+    document.getElementById('<?= $carte['rate'] ?>').checked = true;
+</script>
+
+
                             <?php endforeach; ?>
                             
 
@@ -262,7 +269,6 @@ $cartes = $stmt2->fetchAll();
     <p>Be Informed with All News</p>
     <button id="premiumButton">Go Premium</button>
 </div>
-
 
 
 </body>
